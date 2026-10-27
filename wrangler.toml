@@ -1,6 +1,12 @@
-name = "driftwell"
-pages_build_output_dir = "public"
+name = "sleep-store"
+main = "worker/index.js"
 compatibility_date = "2025-09-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
 
 [[d1_databases]]
 binding = "DB"
@@ -17,6 +23,6 @@ CJ_LOGISTIC_NAME = "CJPacket Ordinary"   # fallback if CJ cannot quote shipping
 EMAIL_FROM = "Driftwell <orders@yourdomain.com>"
 
 # Secrets (never put these in this file). Set each one with:
-#   npx wrangler pages secret put NAME
+#   npx wrangler secret put NAME   (or Cloudflare dashboard > sleep-store > Settings > Variables and Secrets)
 # STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, ADMIN_PASSWORD,
 # CJ_API_KEY (optional), RESEND_API_KEY (optional), OWNER_EMAIL (optional), SITE_URL

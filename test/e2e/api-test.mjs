@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { createHmac } from 'node:crypto';
-const B = 'http://127.0.0.1:8788';
+const B = process.env.BASE || 'http://127.0.0.1:8788';
 const log = () => JSON.parse(readFileSync(process.argv[2], 'utf8'));
 let pass = 0, fail = 0;
 const check = (name, cond, extra = '') => { cond ? pass++ : fail++; console.log((cond ? 'PASS ' : 'FAIL ') + name + (cond ? '' : ' ' + extra)); };
