@@ -16,6 +16,7 @@ http.createServer((req, res) => {
     if (u.includes('/logistic/freightCalculate')) return send({ code: 200, result: true, data: [{ logisticName: 'USPS+', logisticPrice: 4.1, logisticAging: '3-6' }, { logisticName: 'Slowboat', logisticPrice: 1.2, logisticAging: '15-30' }, { logisticName: 'UPS', logisticPrice: 9, logisticAging: '2-4' }] });
     if (u.includes('/shopping/order/createOrderV2')) return send({ code: 200, result: true, data: { orderId: 'CJ123456', orderStatus: 'CREATED' } });
     if (u.includes('/shopping/order/getOrderDetail')) return send({ code: 200, result: true, data: { orderId: 'CJ123456', trackNumber: '9400111899223', trackingUrl: null, orderStatus: 'SHIPPED' } });
+    if (u.includes('/product/query')) { const pid = new URL(u, 'http://x').searchParams.get('pid'); return send({ code: 200, result: true, data: { bigImage: `https://img.example/${pid}/main.jpg`, productImageSet: [`https://img.example/${pid}/2.jpg`, `https://img.example/${pid}/3.jpg`], sellPrice: 10, variants: [{ vid: 'VID-' + pid, variantKey: 'Black', variantSellPrice: 9.5 }] } }); }
     if (u.startsWith('/emails')) return send({ id: 'email_1' });
     res.writeHead(404); res.end('{}');
   });

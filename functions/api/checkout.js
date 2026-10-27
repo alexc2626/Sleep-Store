@@ -3,7 +3,8 @@
 import { priceCart, supplierParts } from '../../src/pricing.js';
 import { stripe } from '../_lib/stripe.js';
 import { createOrder, newOrderId, updateOrder } from '../_lib/db.js';
-import { catalog, json, siteUrl } from '../_lib/util.js';
+import { json, siteUrl } from '../_lib/util.js';
+import { getCatalog } from '../_lib/catalog.js';
 
 export async function onRequestPost({ request, env }) {
   let body;
@@ -12,6 +13,7 @@ export async function onRequestPost({ request, env }) {
   } catch {
     return json({ error: 'Send the cart as JSON.' }, 400);
   }
+  const catalog = await getCatalog(env);
   const priced = priceCart(catalog, body.cart);
   if (!priced.lines.length) return json({ error: 'Your cart is empty.' }, 400);
 

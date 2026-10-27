@@ -5,9 +5,11 @@
 //   POST /api/admin/sync-tracking
 //   GET  /api/admin/stats
 //   GET  /api/admin/subscribers
+//   POST /api/admin/cj-sync        pull photos, variants and costs from CJ
 import { listOrders, updateOrder, getOrder } from '../../_lib/db.js';
 import { fulfilOrder, syncTracking, emailShipped } from '../../_lib/fulfil.js';
-import { catalog, isAdmin, json } from '../../_lib/util.js';
+import { isAdmin, json } from '../../_lib/util.js';
+import { getCatalog, syncFromCj } from '../../_lib/catalog.js';
 
 const STATUSES = ['pending', 'paid', 'sent_to_supplier', 'shipped', 'refunded', 'cancelled'];
 
@@ -20,6 +22,7 @@ export async function onRequest({ request, env, params }) {
       return json({ orders: await listOrders(env.DB, { status }) });
     }
     if (request.method === 'GET' && action === 'stats') {
+      const catalog = await getCatalog(env);
       const orders = await listOrders(env.DB, { limit: 1000 });
       const costOf = (o) => o.parts.reduce((s, p) => s + Math.round((catalog.products.find((x) => x.id === p.product)?.cost || 0) * 100) * p.qty, 0);
       const live = orders.filter((o) => !['refunded', 'cancelled'].includes(o.status));
@@ -33,7 +36,8 @@ export async function onRequest({ request, env, params }) {
       return json({ subscribers: results });
     }
     if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
-    const body = action === 'sync-tracking' ? {} : await request.json();
+    const body = ['sync-tracking', 'cj-sync'].includes(action) ? {} : await request.json();
+    if (action === 'cj-sync') return json({ products: await syncFromCj(env) });
     if (action === 'fulfil') return json(await fulfilOrder(env, body.id));
     if (action === 'update') {
       const existing = await getOrder(env.DB, body.id);

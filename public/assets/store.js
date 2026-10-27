@@ -2,7 +2,28 @@ import { priceCart, lookup, money } from './pricing.js';
 import { ICONS } from './icons.js';
 
 const $ = (id) => document.getElementById(id);
-const catalog = await fetch('/catalog.json').then((r) => r.json());
+const catalog = await fetch('/api/catalog')
+  .then((r) => (r.ok ? r.json() : Promise.reject()))
+  .catch(() => fetch('/catalog.json').then((r) => r.json()));
+
+// Swap the illustrations for real supplier photos once they are synced from CJ.
+for (const p of catalog.products) {
+  if (!p.images?.length) continue;
+  document.querySelectorAll(`.card [data-add="${p.id}"]`).forEach((btn) => {
+    const thumb = btn.closest('.card').querySelector('.thumb');
+    if (thumb && !thumb.querySelector('img')) thumb.innerHTML = `<img src="${p.images[0]}" alt="${p.name}" loading="lazy">`;
+  });
+  const main = document.getElementById('mainImg');
+  if (main && location.pathname.replace(/\.html$/, '').endsWith('/p/' + p.id) && !main.querySelector('img')) {
+    main.innerHTML = `<img src="${p.images[0]}" alt="${p.name}">`;
+    if (p.images.length > 1) {
+      const strip = document.createElement('div');
+      strip.className = 'thumbs';
+      strip.innerHTML = p.images.map((src, i) => `<button data-img="${src}" aria-current="${i === 0}" aria-label="Photo ${i + 1}"><img src="${src}" alt="" loading="lazy"></button>`).join('');
+      main.after(strip);
+    }
+  }
+}
 const KEY = 'driftwell-cart';
 
 let cart = {};

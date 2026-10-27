@@ -6,6 +6,15 @@ let pass = 0, fail = 0;
 const check = (name, cond, extra = '') => { cond ? pass++ : fail++; console.log((cond ? 'PASS ' : 'FAIL ') + name + (cond ? '' : ' ' + extra)); };
 const post = (p, b, h = {}) => fetch(B + p, { method: 'POST', headers: { 'Content-Type': 'application/json', ...h }, body: typeof b === 'string' ? b : JSON.stringify(b) });
 
+// 0. CJ sync fills photos and variants
+const A0 = { Authorization: 'Bearer correct-horse-battery' };
+let r0 = await post('/api/admin/cj-sync', {}, A0);
+let d0 = await r0.json();
+check('cj-sync ran', r0.ok && d0.products.filter((p) => p.ok).length === 6, JSON.stringify(d0).slice(0, 400));
+d0 = await (await fetch(B + '/api/catalog')).json();
+const hp = d0.products.find((p) => p.id === 'sleep-headphones');
+check('catalog has CJ photos + vid', hp.images.length === 3 && hp.supplier.cjVid === 'VID-0557AB39-FB4F-42B0-A354-5A26203AEA26' && hp.cost === 9.5, JSON.stringify(hp));
+
 // 1. checkout: 2 singles (34.99 + 69.99 = 104.98, 10% off = 10.50) + tampered price ignored + bogus id dropped
 let r = await post('/api/checkout', { cart: { 'sleep-headphones': 1, 'mini-massage-gun': 1, 'fake-item': 3 }, price: 0.01 });
 let d = await r.json();
@@ -42,7 +51,7 @@ const cjOrder = log().find((x) => x.url.includes('createOrderV2'));
 const cjBody = cjOrder && JSON.parse(cjOrder.body);
 check('order auto-sent to CJ', !!cjOrder);
 check('CJ gets token header', cjOrder?.headers['cj-access-token'] === 'cjtok');
-check('CJ order has right variants', cjBody && cjBody.products.map((p) => p.vid).sort().join() === 'VID-mini-massage-gun,VID-sleep-headphones', JSON.stringify(cjBody?.products));
+check('CJ order has right variants', cjBody && cjBody.products.map((p) => p.vid).sort().join() === 'VID-0557AB39-FB4F-42B0-A354-5A26203AEA26,VID-1463778127867154432', JSON.stringify(cjBody?.products));
 check('CJ picks cheapest method under 10 days', cjBody?.logisticName === 'USPS+', cjBody?.logisticName);
 check('CJ gets address', cjBody?.shippingCity === 'Austin' && cjBody?.shippingZip === '78701' && cjBody?.shippingCustomerName === 'Jane Doe');
 check('CJ create-only payType 3', cjBody?.payType === 3);
@@ -69,7 +78,7 @@ d = await r.json();
 check('admin lists paid order only', d.orders.length === 1 && d.orders[0].id === order && d.orders[0].cj_order_id === 'CJ123456', JSON.stringify(d).slice(0, 300));
 r = await fetch(B + '/api/admin/stats', { headers: A });
 d = await r.json();
-check('stats revenue = 9448', d.revenue === 9448, JSON.stringify(d));
+check('stats revenue = 9448', d.revenue === 9448 && d.estSupplierCost === 1900, JSON.stringify(d));
 r = await post('/api/admin/sync-tracking', {}, A);
 d = await r.json();
 check('tracking synced from CJ', d.updated?.[0] === order, JSON.stringify(d));

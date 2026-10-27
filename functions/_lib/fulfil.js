@@ -2,12 +2,16 @@
 // to CJ automatically; anything else is listed for you to order by hand.
 import { cjToken, cjCreateOrder, cjOrderDetail } from './cj.js';
 import { updateOrder, getOrder } from './db.js';
+import { getCatalog } from './catalog.js';
 import { sendEmail, escapeHtml, siteUrl } from './util.js';
 
 export async function fulfilOrder(env, orderId) {
   const order = await getOrder(env.DB, orderId);
   if (!order) throw new Error('Order not found');
   if (order.status !== 'paid') return { skipped: `status is ${order.status}` };
+  // Use the latest supplier details, so orders placed before a CJ sync still auto-order.
+  const catalog = await getCatalog(env);
+  order.parts = order.parts.map((p) => ({ ...p, supplier: catalog.products.find((x) => x.id === p.product)?.supplier || p.supplier }));
   const cjParts = order.parts.filter((p) => p.supplier?.cjVid);
   const manual = order.parts.filter((p) => !p.supplier?.cjVid);
   const result = { cj: null, manual: manual.map((p) => ({ name: p.name, qty: p.qty, url: p.supplier?.url })) };

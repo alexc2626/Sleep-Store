@@ -94,6 +94,17 @@ $('sync').onclick = async () => {
     say(e.message);
   }
 };
+$('cjSync').onclick = async () => {
+  say('Pulling photos and costs from CJ, about 15 seconds...');
+  try {
+    const { products } = await api('cj-sync', {});
+    const ok = products.filter((p) => p.ok);
+    const thin = ok.filter((p) => p.margin < 55).map((p) => `${p.name} (${p.margin}%)`);
+    say(`Synced ${ok.length} products from CJ.` + (thin.length ? ` Thin margins: ${thin.join(', ')}.` : '') + ` ${products.length - ok.length} still ordered by hand.`);
+  } catch (e) {
+    say(e.message);
+  }
+};
 $('exportSubs').onclick = async () => {
   const { subscribers } = await api('subscribers');
   const text = subscribers.map((s) => s.email).join('\n');
