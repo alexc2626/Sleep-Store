@@ -1,0 +1,16 @@
+{
+  "name": "driftwell-store",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "import:cj": "node scripts/cj-import.mjs",
+    "test": "node --test test/*.test.mjs",
+    "dev": "node scripts/build.mjs && wrangler pages dev",
+    "db:init": "wrangler d1 execute driftwell --remote --file=schema.sql",
+    "deploy": "node scripts/build.mjs && wrangler pages deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

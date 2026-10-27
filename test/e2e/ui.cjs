@@ -1,0 +1,41 @@
+const { chromium } = require('playwright');
+(async () => {
+  const b = await chromium.launch();
+  const errs = [];
+  const res = [];
+  for (const vp of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
+    const p = await b.newPage({ viewport: vp });
+    p.on('pageerror', (e) => errs.push(e.message));
+    p.on('console', (m) => m.type() === 'error' && !m.text().includes('fonts') && errs.push(m.text()));
+    await p.goto('http://127.0.0.1:8788/');
+    await p.waitForSelector('#grid .card');
+    res.push(['cards', await p.$$eval('#grid .card', (c) => c.length)]);
+    res.push(['no h-scroll ' + vp.width, await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth)]);
+    await p.click('#filters [data-f="recover"]');
+    res.push(['filter recover', await p.$$eval('#grid .card:not([hidden])', (c) => c.length)]);
+    await p.click('#filters [data-f="all"]');
+    await p.click('[data-add="sleep-headphones"]');
+    await p.click('[data-add="mini-massage-gun"]');
+    await p.click('#openCart');
+    res.push(['total', await p.textContent('#total'), await p.textContent('#disc')]);
+    await p.screenshot({ path: `${process.argv[2]}/shot-${vp.width}.png` });
+    await Promise.all([p.waitForURL(/localhost:9999\/pay/), p.click('#checkout')]);
+    res.push(['redirected to', p.url()]);
+    await p.goto('http://127.0.0.1:8788/p/led-face-mask');
+    res.push(['pdp h1', await p.textContent('h1')]);
+    await p.screenshot({ path: `${process.argv[2]}/pdp-${vp.width}.png`, fullPage: false });
+    await p.close();
+  }
+  const a = await b.newPage();
+  await a.goto('http://127.0.0.1:8788/admin');
+  await a.fill('#pw', 'correct-horse-battery');
+  await a.click('#login button');
+  await a.waitForSelector('#rows tr');
+  res.push(['admin rows', await a.$$eval('#rows tr', (r) => r.length), await a.textContent('#stats')]);
+  await a.screenshot({ path: `${process.argv[2]}/admin.png`, fullPage: true });
+  const t = await b.newPage();
+  await t.goto('http://127.0.0.1:8788/track');
+  res.push(['track form', !!(await t.$('#trackForm'))]);
+  console.log(JSON.stringify(res, null, 1), '\nerrors:', errs);
+  await b.close();
+})();

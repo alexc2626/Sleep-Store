@@ -1,0 +1,11 @@
+{
+  "name": "Driftwell",
+  "tagline": "The wind-down store",
+  "supportEmail": "hello@yourdomain.com",
+  "url": "https://driftwell.pages.dev",
+  "announcement": "Black Friday early access: 25% off with code DRIFT25 at checkout",
+  "returnsDays": 30,
+  "shipsFrom": "US warehouses",
+  "deliveryDays": "3 to 8 business days",
+  "christmasCutoff": "15 December"
+}

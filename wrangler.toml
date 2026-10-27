@@ -1,0 +1,23 @@
+name = "driftwell"
+pages_build_output_dir = "public"
+compatibility_date = "2025-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "driftwell"
+# Paste the id printed by: npx wrangler d1 create driftwell
+database_id = "REPLACE_WITH_YOUR_D1_ID"
+
+[vars]
+SHIP_COUNTRIES = "US"
+AUTO_FULFIL = "false"        # "true" sends paid orders to CJ automatically
+CJ_PAY_TYPE = "3"            # 3 = create order in CJ for you to pay, 2 = pay from CJ wallet automatically
+CJ_FROM_COUNTRY = "US"       # ship from CJ US warehouses
+CJ_MAX_SHIPPING_DAYS = "10"
+CJ_LOGISTIC_NAME = "CJPacket Ordinary"   # fallback if CJ cannot quote shipping
+EMAIL_FROM = "Driftwell <orders@yourdomain.com>"
+
+# Secrets (never put these in this file). Set each one with:
+#   npx wrangler pages secret put NAME
+# STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, ADMIN_PASSWORD,
+# CJ_API_KEY (optional), RESEND_API_KEY (optional), OWNER_EMAIL (optional), SITE_URL

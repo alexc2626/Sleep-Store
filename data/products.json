@@ -1,0 +1,240 @@
+{
+  "currency": "usd",
+  "freeShippingThreshold": 50,
+  "flatShipping": 5.99,
+  "multiBuy": [
+    { "minItems": 3, "rate": 0.15 },
+    { "minItems": 2, "rate": 0.10 }
+  ],
+  "products": [
+    {
+      "id": "led-face-mask",
+      "name": "Red Light LED Face Mask",
+      "cat": "glow",
+      "price": 119,
+      "cost": 30,
+      "icon": "mask",
+      "badge": "Bestseller",
+      "short": "Red and near infrared LEDs in a soft, cordless mask. 10 minutes a night.",
+      "bullets": ["Red, near infrared and blue light modes", "Cordless and rechargeable", "Built-in eye protection", "Auto shut-off after 10 minutes"],
+      "images": [],
+      "supplier": {
+        "name": "AliExpress (search, pick a 4.7+ star listing with US shipping)",
+        "url": "https://www.aliexpress.us/w/wholesale-led-phototherapy.html",
+        "backupUrl": "https://www.aliexpress.com/w/wholesale-red-light-mask-therapy.html",
+        "cjPid": "",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "sleep-headphones",
+      "name": "Sleep Headphones Mask",
+      "cat": "sleep",
+      "price": 34.99,
+      "cost": 9,
+      "icon": "headband",
+      "badge": "Viral",
+      "short": "Thin Bluetooth speakers in a soft headband mask. Made for side sleepers.",
+      "bullets": ["Ultra-thin removable speakers", "Bluetooth with about 10 hours of play", "Doubles as a blackout eye mask", "Machine washable band"],
+      "images": [],
+      "supplier": {
+        "name": "CJdropshipping",
+        "url": "https://cjdropshipping.com/product/wireless-bluetooth-sleeping-headphones-headband-thin-soft-elastic-comfortable-music-ear-phones-eye-mask-for-side-sleeper-sports-p-0557AB39-FB4F-42B0-A354-5A26203AEA26.html",
+        "backupUrl": "https://cjdropshipping.com/product/wireless-call-stereo-music-blackout-sleep-eye-mask-p-1372480873869479936.html",
+        "cjPid": "0557AB39-FB4F-42B0-A354-5A26203AEA26",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "mini-massage-gun",
+      "name": "Mini Massage Gun",
+      "cat": "recover",
+      "price": 69.99,
+      "cost": 18,
+      "icon": "gun",
+      "badge": "Hero",
+      "short": "Pocket size, multiple speeds and heads. Quiet enough to use while you watch TV.",
+      "bullets": ["Fits in a gym bag", "Interchangeable massage heads", "USB-C rechargeable", "Quiet motor"],
+      "images": [],
+      "supplier": {
+        "name": "CJdropshipping",
+        "url": "https://cjdropshipping.com/product/muscle-massage-mini-pocket-electric-fascia-massage-back-neck-massager-gun-for-body-deep-relief-pain-slimming-fascial-tool-p-1463778127867154432.html",
+        "backupUrl": "https://cjdropshipping.com/product/relax-tissue-deep-muscle-massage-gun-p-003EAD1C-905A-4F67-9AA4-59BF1BFC8647.html",
+        "cjPid": "1463778127867154432",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "sunset-lamp",
+      "name": "Sunset Projection Lamp",
+      "cat": "unwind",
+      "price": 29.99,
+      "cost": 7,
+      "icon": "lamp",
+      "short": "Bathes your wall in golden hour light. Multiple colour modes with remote.",
+      "bullets": ["Rotating head to aim the glow", "Multiple colour modes", "USB powered", "Remote control included"],
+      "images": [],
+      "supplier": {
+        "name": "AliExpress",
+        "url": "https://www.aliexpress.us/item/3256807366106199.html",
+        "backupUrl": "https://www.aliexpress.us/item/3256805919757941.html",
+        "cjPid": "",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "sunrise-alarm",
+      "name": "Sunrise Alarm Clock",
+      "cat": "sleep",
+      "price": 49.99,
+      "cost": 15,
+      "icon": "clock",
+      "short": "Wakes you with slowly rising light and soft sounds instead of a harsh beep.",
+      "bullets": ["Gradual sunrise and sunset light", "Nature sounds", "Doubles as a reading light", "Adjustable brightness"],
+      "images": [],
+      "supplier": {
+        "name": "CJdropshipping",
+        "url": "https://cjdropshipping.com/product/sunrise-alarm-clock-reading-light-p-3384386D-00DB-477C-9806-A8505C002FEA.html",
+        "backupUrl": "https://cjdropshipping.com/product/sunrise-and-sunset-wake-up-desk-lamp-alarm-clock-p-888EB8DC-59D9-43ED-88B4-A83D60931985.html",
+        "cjPid": "3384386D-00DB-477C-9806-A8505C002FEA",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "neck-massager",
+      "name": "Shiatsu Neck Massager",
+      "cat": "recover",
+      "price": 69.99,
+      "cost": 21,
+      "icon": "neck",
+      "badge": "Gift pick",
+      "short": "Kneading nodes for neck, shoulders and back. Cordless.",
+      "bullets": ["Deep kneading massage", "Wireless and rechargeable", "Works on neck, shoulders and back", "Arm loops for adjustable pressure"],
+      "images": [],
+      "supplier": {
+        "name": "CJdropshipping",
+        "url": "https://cjdropshipping.com/product/electric-neck-and-shoulder-muscle-massager-wireless-shoulder-and-back-kneading-massage-shawl-neck-masajeador-relax-pain-relief-p-2507290913441604900.html",
+        "backupUrl": "",
+        "cjPid": "2507290913441604900",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "acupressure-set",
+      "name": "Acupressure Mat and Pillow",
+      "cat": "recover",
+      "price": 44.99,
+      "cost": 12,
+      "icon": "mat",
+      "short": "Thousands of pressure points to release tension. Mat, pillow and carry bag.",
+      "bullets": ["Full-size mat plus neck pillow", "Removable cover", "Carry bag included", "10 to 20 minutes a session"],
+      "images": [],
+      "supplier": {
+        "name": "AliExpress",
+        "url": "https://www.aliexpress.us/item/3256801275781736.html",
+        "backupUrl": "https://www.aliexpress.us/item/3256802309137834.html",
+        "cjPid": "",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "eye-massager",
+      "name": "Heated Eye Massager",
+      "cat": "recover",
+      "price": 49.99,
+      "cost": 15,
+      "icon": "eye",
+      "short": "Gentle warmth and massage for screen-tired eyes.",
+      "bullets": ["Soothing warmth", "Multiple massage modes", "Rechargeable", "Folds for travel"],
+      "images": [],
+      "supplier": {
+        "name": "CJdropshipping",
+        "url": "https://cjdropshipping.com/product/4-colors-electric-eye-massager-red-blue-light-massage-eye-beautification-instrument-therapeutic-warmth-face-massage-p-1783744478788988928.html",
+        "backupUrl": "",
+        "cjPid": "1783744478788988928",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "flame-diffuser",
+      "name": "Flame Aroma Diffuser",
+      "cat": "unwind",
+      "price": 34.99,
+      "cost": 9,
+      "icon": "diffuser",
+      "short": "Flame-effect mist with colour light and auto shut-off.",
+      "bullets": ["Realistic flame light effect", "Ultrasonic cool mist", "Auto shut-off when empty", "USB powered"],
+      "images": [],
+      "supplier": {
+        "name": "CJdropshipping",
+        "url": "https://cjdropshipping.com/product/flame-aroma-diffuser-household-desk-aromatherapy-humidifier-p-1674779378082910208.html",
+        "backupUrl": "https://cjdropshipping.com/product/new-humidifier-colorful-simulation-flame-aroma-diffuser-desktop-creativity-humidifier-for-home-room-p-1694607197482782720.html",
+        "cjPid": "1674779378082910208",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "white-noise",
+      "name": "White Noise Machine",
+      "cat": "sleep",
+      "price": 29.99,
+      "cost": 8,
+      "icon": "noise",
+      "short": "Soothing non-looping sounds, warm night light and sleep timer.",
+      "bullets": ["30 soothing sounds", "Warm night light", "Sleep timer", "Rechargeable and portable"],
+      "images": [],
+      "supplier": {
+        "name": "AliExpress",
+        "url": "https://www.aliexpress.us/item/3256807196732778.html",
+        "backupUrl": "https://www.aliexpress.us/item/3256809626139348.html",
+        "cjPid": "",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "silk-pillowcase",
+      "name": "Mulberry Silk Pillowcase",
+      "cat": "sleep",
+      "price": 29.99,
+      "cost": 6,
+      "icon": "pillow",
+      "short": "22 momme mulberry silk that is kinder to hair and skin. Hidden zip.",
+      "bullets": ["22 momme mulberry silk", "Hidden zip closure", "Standard, queen and king sizes", "Several colours"],
+      "images": [],
+      "supplier": {
+        "name": "AliExpress",
+        "url": "https://www.aliexpress.us/item/2251832681951388.html",
+        "backupUrl": "https://www.aliexpress.us/item/3256806606629154.html",
+        "cjPid": "",
+        "cjVid": ""
+      }
+    },
+    {
+      "id": "ice-roller",
+      "name": "Facial Ice Roller",
+      "cat": "glow",
+      "price": 19.99,
+      "cost": 4,
+      "icon": "roller",
+      "short": "Stainless steel roller that cools and depuffs in seconds.",
+      "bullets": ["Keep in the fridge or freezer", "Stainless steel head", "Use after the LED mask", "Travel friendly"],
+      "images": [],
+      "supplier": {
+        "name": "AliExpress",
+        "url": "https://www.aliexpress.us/item/3256808288034403.html",
+        "backupUrl": "https://www.aliexpress.us/w/wholesale-ice-face-roller.html",
+        "cjPid": "",
+        "cjVid": ""
+      }
+    }
+  ],
+  "bundles": [
+    { "id": "glow-night-set", "name": "Glow Night Set", "items": ["led-face-mask", "silk-pillowcase", "ice-roller"], "price": 134.99, "flag": "Best value" },
+    { "id": "wind-down-kit", "name": "Ultimate Wind-Down Kit", "items": ["sleep-headphones", "sunset-lamp", "flame-diffuser", "eye-massager"], "price": 109.99, "flag": "Top gift" },
+    { "id": "recovery-duo", "name": "Recovery Night Duo", "items": ["mini-massage-gun", "acupressure-set"], "price": 89.99 },
+    { "id": "deep-sleep-kit", "name": "Deep Sleep Kit", "items": ["sleep-headphones", "white-noise", "silk-pillowcase"], "price": 69.99 }
+  ],
+  "addons": [
+    { "id": "addon-ice-roller", "name": "Facial Ice Roller (add-on)", "price": 14.99, "product": "ice-roller" }
+  ]
+}
